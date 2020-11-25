@@ -12,11 +12,54 @@ However due to the [same-origin policy](https://developer.mozilla.org/en-US/docs
 ### name
 rama.js is not named after the Hindu God [Rama](https://en.wikipedia.org/wiki/Rama) but after the Swedish verb *att rama in* = *to frame*.
 
+
+
 ## installation
 **currently missing**
 
+
+
 ## documentation
-**currently missing**
+
+### iframe functions
+
+
+
+### other functions
+
+**rama.js** also provides some other functions not directly related to iframes, to make web scripting easier:
+
+#### rama.loadjs(url)
+Creates a new script tag with the specified url. Usefull for loading external libraries.
+
+```javascript
+rama.loadjs("https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js");
+```
+
+#### rama.loadcss(csstext)
+Injects the given CSS into a new `<style>`-tag.
+
+```javascript
+rama.loadcss("h1 {color: red;}");
+```
+
+#### rama.clearcss()
+Removes all `<style>` and `<link rel="stylesheet">`-tags.
+
+NOTICE: inline styles given to specific elements stay!
+
+```javascript
+rama.clearcss();
+```
+
+#### rama.clearScreen()
+Sets all currently existing elements to `display: none`.
+
+```javascript
+rama.clearScreen();
+```
+
+
 
 ## other projects
 I think, at the moment this is the only project with this main idea. But one can never be sure that there isn't some other similar project hidden somewhere on the internet. So if you built or found one please write me a mail, as I'm very curious about other ideas.
