@@ -14,8 +14,12 @@ rama.js is not named after the Hindu God [Rama](https://en.wikipedia.org/wiki/Ra
 
 
 
+
+
 ## installation
 **currently missing**
+
+
 
 
 
@@ -26,7 +30,7 @@ rama.js is not named after the Hindu God [Rama](https://en.wikipedia.org/wiki/Ra
 #### rama.new( settings\<optional\> )
 Creates a new `<iframe>` and returns the `rframe`-object. A settings object can optionally be passed in. Possible settings are:
 
-- `name` / `id`: for the new iframe (see beolow). Default ist something like `rama-273`
+- `name` / `id`: for the new iframe (see [below](#rframename-or-rframeid-read-only)). Default is something like `rama-273`
 - `parent`: parent dom element. Defaul is the `body`-tag
 - `url`: url to open (Can be `about:blank`). Default is the current url of the main window
 
@@ -44,28 +48,61 @@ Removes the iframe from the DOM.
 client.close();
 ```
 
-#### rframe.d or rframe.document
-Access the `document` inside the `<iframe>`. There is also the handy shorthand `rframe.d.qsa( selector )` for `Array.from(rframe.d.querySelectorAll( selector ))`.
+#### rframe.d or rframe.document (read-only)
+Access the `document` inside the `<iframe>`. There is also the handy shorthand `rframe.d.qsa(selector)` for `Array.from(rframe.d.querySelectorAll(selector))`.
 
 ```javascript
 let testElement = client.d.getElementById("test-element");
 let testElements = client.d.qsa(".test");
 ```
 
-#### rframe.w or rframe.window
+#### rframe.w or rframe.window (read-only)
 Access the `window`-object of the `<iframe>`.
 
 ```javascript
 client.w.history.back();
 ```
 
-#### rframe&#46;name or rframe&#46;id
+#### rframe&#46;name or rframe&#46;id (read-only)
 There is a good description for this on [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe):
 > A targetable name for the embedded browsing context. This can be used in the target attribute of the `<a>`, `<form>`, or `<base>` elements; the formtarget attribute of the `<input>` or `<button>` elements; or the windowName parameter in the `window.open()` method.
 
 ```javascript
 document.getElementById("links-to-frame").target = client.name;
 ```
+#### rframe.waitForReload()
+Pretty self-explanatory: It waits for a reload of the iframe.
+
+```javascript
+button.click();
+await client.waitForReload();
+// do something on the new page
+```
+
+#### rframe.waitForUpdate()
+Waits for any kind of update to the DOM.
+
+```javascript
+while(!checkSomething()) {
+    await client.waitForUpdate();
+}
+// do something now that your checks succeed
+```
+
+#### rframe.waitForSelector(selector)
+Waits for a specific selector to match any item on the page. Useful for web-frameworks where at `rframe.waitForReload()` not everything on the website is ready.
+
+```javascript
+button.click();
+await client.waitForReload();
+await client.waitForSelector("#some-div-somewhere");
+// do something on the new page
+```
+
+#### custom styling
+All frames can be accessed with the css selector/class `rama-frame`. Additionally every single frame has its id/name also as id on the iframe tag.
+
+
 
 
 
@@ -74,7 +111,7 @@ document.getElementById("links-to-frame").target = client.name;
 **rama.js** also provides some other functions not directly related to iframes, to make web scripting easier:
 
 #### rama.loadjs(url)
-Creates a new script tag with the specified url. Usefull for loading external libraries.
+Creates a new script tag with the specified url. Useful for loading external libraries.
 
 ```javascript
 rama.loadjs("https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js");
@@ -102,6 +139,8 @@ Sets all currently existing elements to `display: none`.
 ```javascript
 rama.clearScreen();
 ```
+
+
 
 
 
