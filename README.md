@@ -23,6 +23,50 @@ rama.js is not named after the Hindu God [Rama](https://en.wikipedia.org/wiki/Ra
 
 ### iframe functions
 
+#### rama.new( settings\<optional\> )
+Creates a new `<iframe>` and returns the `rframe`-object. A settings object can optionally be passed in. Possible settings are:
+
+- `name` / `id`: for the new iframe (see beolow). Default ist something like `rama-273`
+- `parent`: parent dom element. Defaul is the `body`-tag
+- `url`: url to open (Can be `about:blank`). Default is the current url of the main window
+
+```javascript
+let client = rama.new({
+    url: "about:blank",
+    parent: document.getElementById("iframe-wrapper"),
+});
+```
+
+#### rframe.close()
+Removes the iframe from the DOM.
+
+```javascript
+client.close();
+```
+
+#### rframe.d or rframe.document
+Access the `document` inside the `<iframe>`. There is also the handy shorthand `rframe.d.qsa( selector )` for `Array.from(rframe.d.querySelectorAll( selector ))`.
+
+```javascript
+let testElement = client.d.getElementById("test-element");
+let testElements = client.d.qsa(".test");
+```
+
+#### rframe.w or rframe.window
+Access the `window`-object of the `<iframe>`.
+
+```javascript
+client.w.history.back();
+```
+
+#### rframe&#46;name or rframe&#46;id
+There is a good description for this on [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe):
+> A targetable name for the embedded browsing context. This can be used in the target attribute of the `<a>`, `<form>`, or `<base>` elements; the formtarget attribute of the `<input>` or `<button>` elements; or the windowName parameter in the `window.open()` method.
+
+```javascript
+document.getElementById("links-to-frame").target = client.name;
+```
+
 
 
 ### other functions
