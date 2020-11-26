@@ -99,6 +99,13 @@ await client.waitForSelector("#some-div-somewhere");
 // do something on the new page
 ```
 
+#### rama.clearpage()
+Clears the current window by setting the `<body>` to `display: none`. Changes the standard parent for new iframes to the `<html>`-tag to keep them visible.
+
+```javascript
+rama.clearpage();
+```
+
 #### custom styling
 All frames can be accessed with the css selector/class `rama-frame`. Additionally every single frame has its id/name also as id on the iframe tag.
 
@@ -114,7 +121,7 @@ All frames can be accessed with the css selector/class `rama-frame`. Additionall
 Creates a new script tag with the specified url. Useful for loading external libraries.
 
 ```javascript
-rama.loadjs("https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js");
+await rama.loadjs("https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js");
 ```
 
 #### rama.loadcss(csstext)
@@ -133,12 +140,6 @@ NOTICE: inline styles given to specific elements stay!
 rama.clearcss();
 ```
 
-#### rama.clearScreen()
-Sets all currently existing elements to `display: none`.
-
-```javascript
-rama.clearScreen();
-```
 
 
 
