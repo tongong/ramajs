@@ -1,7 +1,5 @@
 # rama.js
 
-# AT THE MOMENT ONLY AN IDEA AND NO ACTUAL IMPLEMENTATION EXISTS
-
 ## about
 The simplest way to automate web tasks is using the language of the web - Javascript and the normal web apis by just running the code from the developer console. This way you don't need to install any program, extension or separate browser to just automate this one feature. Additionally you don't need to learn any new tools or apis.
 
@@ -41,11 +39,11 @@ let client = rama.new({
 });
 ```
 
-#### rframe.close()
-Removes the iframe from the DOM.
+#### rframe.t or rframe.tag (read-only)
+Access the `<iframe>`-tag.
 
 ```javascript
-client.close();
+client.t.classList.add("invisible");
 ```
 
 #### rframe.d or rframe.document (read-only)
@@ -97,6 +95,13 @@ button.click();
 await client.waitForReload();
 await client.waitForSelector("#some-div-somewhere");
 // do something on the new page
+```
+
+#### rframe.close()
+Removes the iframe from the DOM.
+
+```javascript
+client.close();
 ```
 
 #### rama.clearpage()

@@ -28,6 +28,35 @@ rama = {
         iframeTag.id = config.name;
         iframeTag.classList.add("rama-frame");
         config.parent.appendChild(iframeTag);
+
+        // create the rframe object
+        // is this the correct way to create an object? it works...
+        const rframe = {
+            tag: iframeTag,
+            t: iframeTag,
+            // d & document are added when the page loads (see below)
+            w: iframeTag.contentWindow,
+            window: iframeTag.contentWindow,
+            name: config.name,
+            id: config.name,
+
+            waitForReload: function () {},
+            waitForUpdate: function () {},
+            waitForSelector: function () {},
+            close: function () {
+                this.tag.parentElement.removeChild(this.tag);
+            }
+        };
+        // add events for the .document attribute (changes at reload)
+        iframeTag.addEventListener("load", () => {
+            rframe.document = iframeTag.contentDocument;
+            // qsa() function
+            rframe.document.qsa = function (selector) {
+                return Array.from(rframe.document.querySelectorAll(selector));
+            };
+            rframe.d = rframe.document;
+        });
+        return rframe;
     },
 
     clearpage: function () {
@@ -35,7 +64,7 @@ rama = {
         // but it enables us in this case to completely switch to the iframe window
         this.stdparent = document.querySelector("html");
         this.loadcss(
-            ".rama-frame { width: 100vw; height: 100vh; postion: fixed; top: 0; left: 0; } " +
+            ".rama-frame { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; } " +
                 "body { display: none; } " +
                 "html { overflow: hidden; } "
         );
