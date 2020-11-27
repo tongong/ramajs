@@ -31,7 +31,7 @@ rama.js is not named after the Hindu God [Rama](https://en.wikipedia.org/wiki/Ra
 Creates a new `<iframe>` and returns the `rframe`-object. A settings object can optionally be passed in. Possible settings are:
 
 - `name` / `id`: for the new iframe (see [below](#rframename-or-rframeid-read-only)). Default is something like `rama-273`
-- `parent`: parent dom element. Defaul is the `body`-tag
+- `parent`: parent DOM element. Default is the `body`-tag
 - `url`: url to open (Can be `about:blank`). Default is the current url of the main window
 
 ```javascript
@@ -107,7 +107,7 @@ rama.clearpage();
 ```
 
 #### custom styling
-All frames can be accessed with the css selector/class `rama-frame`. Additionally every single frame has its id/name also as id on the iframe tag.
+All frames can be accessed with the CSS selector/class `rama-frame`. Additionally every single frame has its id/name also as id on the iframe tag.
 
 
 
