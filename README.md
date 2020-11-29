@@ -15,10 +15,10 @@ activities of your script have to take place on that specific website instance.
 providing a simple api to control it. So you can for example automate clicking
 on a link and the script will keep running on the new page.
 
-However due to the [same-origin policy](
-https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) all
-actions are still limited to pages on that specific domain. I think you can turn
-that off in most browsers, but it's generally a very bad idea as it opens
+However due to the
+[same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+all actions are still limited to pages on that specific domain. I think you can
+turn that off in most browsers, but it's generally a very bad idea as it opens
 security vulnerabilities.
 
 ### name
@@ -35,7 +35,7 @@ in_ = _to frame_.
 
 ### iframe functions
 
-#### rama.new( settings\<optional\> )
+#### rama.new(settings\<optional\>)
 
 Creates a new `<iframe>` and returns the `rframe`-object. A settings object can
 optionally be passed in. Possible settings are:
@@ -82,7 +82,7 @@ client.w.history.back();
 
 #### rframe<nolink>.name or rframe<nolink>.id (read-only)
 
-There is a good description for this on 
+There is a good description for this on
 [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe):
 
 > A targetable name for the embedded browsing context. This can be used in the
@@ -96,7 +96,7 @@ document.getElementById("links-to-frame").target = client.name;
 
 #### rframe.waitForReload()
 
-Pretty self-explanatory: It waits for a reload of the iframe.
+Pretty self-explanatory: Returns a Promise to wait for a reload of the iframe.
 
 ```javascript
 button.click();
@@ -104,22 +104,27 @@ await client.waitForReload();
 // do something on the new page
 ```
 
-#### rframe.waitForUpdate()
+#### rframe.waitFor(testFunction, delay\<optional\>)
 
-Waits for any kind of update to the DOM.
+Retruns a Promise, which resolves when `testFunction` evaluates to true. The
+`rframe`-object is passed to `testFunction`. At the moment the implementation is
+a bit hacky as it uses `setInterval()`. The delay for `setInterval()` can be
+changed through the `delay` parameter, the default is 500 (measured in
+milliseconds).
 
 ```javascript
-while (!checkSomething()) {
-    await client.waitForUpdate();
-}
-// do something now that your checks succeed
+await client.waitFor(
+    (client) => client.d.querySelector("#some-div").style.display == "block"
+);
+// do something now that your checks succeeded
 ```
 
-#### rframe.waitForSelector(selector)
+#### rframe.waitForSelector(selector, delay\<optional\>)
 
-Waits for a specific selector to match any item on the page. Useful for
-web-frameworks where at `rframe.waitForReload()` not everything on the website
-is ready.
+Returns a Promise which resolves when any element on the page matches the given
+selector. Useful for web-frameworks where at `rframe.waitForReload()` not
+everything on the page is ready. Works by using `rframe.waitFor()`: the optional
+`delay` attribute gets passed through.
 
 ```javascript
 button.click();
@@ -158,7 +163,7 @@ to make web scripting easier:
 #### rama.loadjs(url)
 
 Creates a new script tag with the specified url. Useful for loading external
-libraries.
+libraries. Returns a Promise, which resolves, when the scripts finished loading.
 
 ```javascript
 await rama.loadjs(
