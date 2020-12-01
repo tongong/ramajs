@@ -1,5 +1,12 @@
 # rama.js
 
+1. [about](#about)
+2. [installation](#installation)
+3. [documentation](#documentation)
+4. [examples](#examples)
+5. [contributing](#contributing)
+6. [other projects](#other-projects)
+
 ## about
 
 The simplest way to automate web tasks is using the language of the web -
