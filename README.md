@@ -185,6 +185,10 @@ NOTICE: inline styles given to specific elements stay!
 rama.clearcss();
 ```
 
+## examples
+
+See examples folder
+
 ## other projects
 
 I think, at the moment this is the only project with this main idea. But one can
