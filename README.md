@@ -26,7 +26,9 @@ in_ = _to frame_.
 
 ## installation
 
-**currently missing**
+There obviously is no npm-package for this as this would not benefit anyone. To
+use rama.js just paste `rama.js` or the minified version `rama.min.js` in your
+console or add them to the top of your script.
 
 ## documentation
 
@@ -189,6 +191,17 @@ rama.clearcss();
 
 See examples folder
 
+## contributing
+
+Issues and Pull-Requests are welcome.
+
+The code is formatted with [prettier][]: the configuration can be found in
+`.prettierrc`. To generate `rama.min.js` [terser][] is used:
+
+```bash
+terser -c -m -o rama.min.js -- rama.js
+```
+
 ## other projects
 
 I think, at the moment this is the only project with this main idea. But one can
@@ -199,3 +212,5 @@ curious about other ideas.
 [iframe]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 [same-origin policy]: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
 [rama-god]: https://en.wikipedia.org/wiki/Rama
+[prettier]: https://github.com/prettier/prettier
+[terser]: https://github.com/terser/terser
