@@ -211,13 +211,24 @@ terser -c -m -o rama.min.js -- rama.js
 
 ## other projects
 
-I think, at the moment this is the only project with this main idea. But one can
-never be sure that there isn't some other similar project hidden somewhere on
-the internet. So if you built or found one please write me a mail, as I'm very
-curious about other ideas.
+There are several other approaches to web scripting, which could fit your needs
+better:
+
+-   professional test frameworks like [puppeteer][] or [selenium][]
+-   userscripts. A large collection can be found on [openuserjs][]
+-   get the content with a utility like [curl][] and parse it yourself
+
+I think however, at the moment this is the only project with this main idea. But
+one can never be sure that there isn't some other similar project hidden
+somewhere on the internet. So if you built or found one please write me a mail,
+as I'm very curious about other ideas.
 
 [iframe]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 [same-origin policy]: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
 [rama-god]: https://en.wikipedia.org/wiki/Rama
 [prettier]: https://github.com/prettier/prettier
 [terser]: https://github.com/terser/terser
+[puppeteer]: https://github.com/puppeteer/puppeteer/
+[selenium]: https://www.selenium.dev/
+[openuserjs]: https://openuserjs.org/
+[curl]: https://en.wikipedia.org/wiki/CURL
